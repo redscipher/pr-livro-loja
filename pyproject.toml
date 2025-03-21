@@ -1,0 +1,19 @@
+[project]
+name = "pr-livro-loja"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "redssy",email = "redlemagic@hotmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pytest (>=8.3.5,<9.0.0)",
+    "factory-boy (>=3.3.3,<4.0.0)",
+    "django (>=5.1.7,<6.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
