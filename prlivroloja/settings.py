@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework"        #adciona o django rest framework
+    "rest_framework",
+    "ordem",
+    "produto"
 ]
 
 MIDDLEWARE = [
