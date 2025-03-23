@@ -1,15 +1,39 @@
 #== importacoes
 import factory
+from faker import Factory as FF
 #django: usuario
 from django.contrib.auth.models import User
 #-------------------
 from ordem.modelos import Ordem
 from produto.fabricas import ProdutoFabrica
 
+#cria um objeto que gera dados falsos
+falsosDados = FF.create()
+
 class UsuarioFabrica(factory.django.DjangoModelFactory):
     #atributos
     email = factory.Faker('pystr')
-    username = factory.Faker('pystr')
+    username = factory.LazyAttribute(lambda x: falsosDados.name())
+    
+    #sobreescrita: polimorfismo
+    @classmethod 
+    def _prepare(cls, create, **kwargs):
+        #usuario super
+        usuario = super(UsuarioFabrica, cls)._prepare(create, **kwargs)
+        #senha do email
+        senha = kwargs.pop("password", None)
+        #tentativa 2
+        if not senha:
+            senha = kwargs.pop("senha", None)
+        #validacao
+        if senha:
+            #define a senha configura nos parametros
+            usuario.set_password(senha)
+            #-------------------
+            if create:
+                usuario.save()
+        #def retorno
+        return usuario
     
     #polimorfismo: sobreescrita
     class Meta:
