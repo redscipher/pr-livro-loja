@@ -62,3 +62,4 @@ class OrdemFabrica(factory.django.DjangoModelFactory):
     #classes: sobreescrita
     class Meta:
         model = Ordem
+        skip_postgeneration_save=True

@@ -19,7 +19,7 @@ class CategoriaFabrica(factory.django.DjangoModelFactory):
 #produto
 class ProdutoFabrica(factory.django.DjangoModelFactory):
     #atributos
-    preco = factory.Faker('pystr')
+    preco = factory.Faker('pyint')
     titulo = factory.Faker('pystr')
     #instancia
     categoria = factory.LazyAttribute(CategoriaFabrica)
@@ -42,3 +42,4 @@ class ProdutoFabrica(factory.django.DjangoModelFactory):
     #polimorfismo
     class Meta:
         model = Produto
+        skip_postgeneration_save=True

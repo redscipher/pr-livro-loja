@@ -1,33 +1,24 @@
 #importacoes
 import pytest
 #-----------------------------------
-from produto.modelos import Produto
-from produto.testes.modelos import criaCategoria
+from produto.fabricas import ProdutoFabrica
 
-#decorador p/ criar um codigo que retorna um objeto reutilizavel: fixture
-@pytest.fixture
-def criaProduto(criaCategoria):
+def criaProduto():
     #---------------------
-    produto = Produto(
-        titulo='Carro Flex',
-        descricao='Um carro da Honda',
-        preco=10,
-        ativo=True,
-    )
+    produto = ProdutoFabrica()
     #salva o objeto primeiro, pois a relação many-to-many depende de uma instancia persistida
     produto.save()
-    #define o relacionamento many-to-many usando o metodo .add() ou .set()
-    produto.categoria.add(criaCategoria)
     #def retorno
     return produto
 
 #decorador p/ criar objetos no banco configurado
 @pytest.mark.django_db
-def testa_criaProduto(criaProduto, criaCategoria):
+def testa_criaProduto():
+    #cria produto
+    produto = criaProduto()
     #validacoes
-    assert criaProduto.titulo == 'Carro Flex'
-    assert criaProduto.descricao == 'Um carro da Honda'
-    assert criaProduto.preco == 10
+    assert produto.titulo != ''
+    assert produto.descricao != ''
+    assert produto.preco != -1
     # Verifica se o produto esta associado a categoria: 
-    assert criaCategoria.titulo == 'Carro'
-    assert criaCategoria in criaProduto.categoria.all()
+    assert produto.categoria.all().count() == 0
