@@ -10,7 +10,7 @@ from produto.viewset import ProdutoViewset, CategoriaViewset
 rotasControle = routers.SimpleRouter()
 #registra as views
 rotasControle.register(r'produto', ProdutoViewset, basename='produto')
-#rotasControle.register(r'categoria', CategoriaViewset, basename='categoria')
+rotasControle.register(r'categoria', CategoriaViewset, basename='categoria')
 
 #rotas
 urlpatterns = [

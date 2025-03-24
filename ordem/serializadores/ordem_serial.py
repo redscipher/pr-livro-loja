@@ -13,29 +13,35 @@ class OrdemSerializer(serializers.ModelSerializer):
     #classe configuracao: django
     class Meta:
         model = Ordem
-        fields = ['usuario', 'produto', 'total']
+        fields = ['usuario', 'produto', 'total', 'produto_id']
+        extra_kwargs = {
+            'produto': {'required': False}
+        }
     
     #instancia
-    produto = ProdutoSerializer(required=True, many=True)
+    produto = ProdutoSerializer(required=False, many=True)
 
     #propriedades
     #cria um novo campo na tabela
     total = serializers.SerializerMethodField()
     #id do produto
-    #produto_id = serializers.PrimaryKeyRelatedField(queryset=Produto.objects.all(), write_only=True, many=True)
+    produto_id = serializers.PrimaryKeyRelatedField(queryset=Produto.objects.all(), required=False, write_only=True, many=True)
     
     #region metodos: sobreescritos
     #
     def create(self, validated_data):
+        #variavel
+        campos = 'produto_id' if 'produto_id' in validated_data else 'produto'
         #extrai os dados aninhados p/ 'produto'
-        produtos_data = validated_data.pop('produto')
+        produtos_data = validated_data.pop(campos)
+        usuario_data = validated_data.pop('usuario')
         #cria o produto com os dados restantes
-        ordem = Ordem.objects.create(**validated_data)
+        ordem = Ordem.objects.create(usuario=usuario_data)
         #cria (ou obtem) e adiciona cada produto a ordem
         for prod_data in produtos_data:
             #aqui, chamamos o metodo create() do ProdutoSerializer
             #atencao: issoS sempre cria uma nova categoria
-            prod_obj = ProdutoSerializer().create(prod_data)
+            prod_obj = prod_data if campos == 'produto_id' else ProdutoSerializer().create(prod_data)
             #adiciona a categoria
             ordem.produto.add(prod_obj)
         #def retorno

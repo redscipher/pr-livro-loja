@@ -23,6 +23,6 @@ from django.urls import path, re_path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     #parametros regulares
-    re_path('livroloja/(?P<version>(v1|v2))/', include('ordem.urls')),
-    re_path('livroloja/(?P<version>(v1|v2))/', include('produto.urls'))
+    re_path('livroloja/(?P<versao>(v1|v2))/', include('ordem.urls')),
+    re_path('livroloja/(?P<versao>(v1|v2))/', include('produto.urls'))
 ]
