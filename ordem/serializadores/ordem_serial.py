@@ -4,6 +4,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 #tabelas
 from ordem.modelos import Ordem
+from produto.modelos import Produto
 #serializadores
 from produto.serializadores.produto_serial import ProdutoSerializer
 
@@ -16,10 +17,12 @@ class OrdemSerializer(serializers.ModelSerializer):
     
     #instancia
     produto = ProdutoSerializer(required=True, many=True)
-    
+
     #propriedades
     #cria um novo campo na tabela
     total = serializers.SerializerMethodField()
+    #id do produto
+    #produto_id = serializers.PrimaryKeyRelatedField(queryset=Produto.objects.all(), write_only=True, many=True)
     
     #region metodos: sobreescritos
     #
