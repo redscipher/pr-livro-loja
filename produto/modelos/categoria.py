@@ -8,7 +8,3 @@ class Categoria(models.Model):
     descricao = models.TextField(max_length=200, blank=True, null=True)
     #controle
     ativo = models.BooleanField(default=True)
-    
-    #retorna o titulo
-    def __unicode__(self) -> str:
-        return self.titulo

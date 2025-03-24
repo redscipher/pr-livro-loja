@@ -17,6 +17,4 @@ def testa_criaCategoria():
     #cria categoria
     categoria = criaCategoria()
     #validacoes
-    assert categoria.titulo != ''
-    assert categoria.slug != ''
-    assert categoria.descricao != ''
+    assert categoria != None

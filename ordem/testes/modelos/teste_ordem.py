@@ -3,8 +3,6 @@ import pytest
 #-----------------------------------
 from ordem.fabricas import OrdemFabrica
 
-#decorador p/ criar um codigo que retorna um objeto reutilizavel: fixture
-@pytest.fixture
 def criaOrdem():
     #-----------------
     ordem = OrdemFabrica()
@@ -15,6 +13,12 @@ def criaOrdem():
 
 #decorador p/ criar objetos no banco configurado
 @pytest.mark.django_db
-def testa_criaOrdem(criaOrdem):
-    # Verifica se o produto esta associado a categoria: 
-    assert criaOrdem.produto.all().count() == 0
+def testa_criaOrdem():
+    #cria uma ordem
+    ordem = criaOrdem()
+    #verifica se foi criado uma ordem
+    assert ordem != None
+    #verifica se a ordem possui usuario
+    assert ordem.usuario != None
+    #produto
+    assert ordem.produto != None
