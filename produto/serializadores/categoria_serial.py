@@ -13,14 +13,16 @@ class CategoriaSerializer(serializers.ModelSerializer):
         model = Categoria
         fields = ['titulo', 'slug', 'descricao', 'ativo']
         extra_kwargs = {
-            'slug': {'validators': []}  #desabilita a validacao unica p/ slug
+            'slug': {
+                'validators': [],        #desabilita a validacao unica p/ slug
+                'required': False
+            }
         }
         
     #region funcoes: sobreescritas
     def create(self, validated_data):
         #se ja existir uma categoria com o mesmo slug, atualiza-a, caso contrario, cria uma nova
         instancia, criado = Categoria.objects.update_or_create(
-            slug=validated_data['slug'],
             defaults=validated_data
         )
         return instancia

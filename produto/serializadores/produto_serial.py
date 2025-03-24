@@ -4,7 +4,8 @@ from rest_framework.renderers import JSONRenderer
 #json
 import json
 #---------------------
-from produto.modelos.produto import Produto
+from produto.modelos import Produto
+from produto.modelos import Categoria
 #serializadores
 from produto.serializadores.categoria_serial import CategoriaSerializer
 
@@ -13,23 +14,32 @@ class ProdutoSerializer(serializers.ModelSerializer):
     #classes
     class Meta:
         model = Produto
-        fields = ['titulo', 'descricao', 'preco', 'ativo', 'categoria']
+        fields = ['id', 'titulo', 'descricao', 'preco', 'ativo', 'categoria', 'categoria_id']
+        extra_kwargs = {
+            'categoria': {'required': False}
+        }
+    
     
     #instancias
-    categoria = CategoriaSerializer(required=True, many=True)
+    categoria = CategoriaSerializer(required=False, many=True)
+    
+    #cria novos campos na tabela
+    categoria_id = serializers.PrimaryKeyRelatedField(queryset=Categoria.objects.all(), required=False, write_only=True, many=True)
     
     #region metodos: sobreescritos
     #
     def create(self, validated_data):
+        #variavel
+        campos = 'categoria_id' if 'categoria_id' in validated_data else 'categoria'
         #extrai os dados aninhados p/ 'categoria'
-        categorias_data = validated_data.pop('categoria')
+        categorias_data = validated_data.pop(campos)
         #cria o produto com os dados restantes
         produto = Produto.objects.create(**validated_data)
         #cria (ou obtem) e adiciona cada categoria ao produto
         for cat_data in categorias_data:
             #aqui, chamamos o metodo create() do CategoriaSerializer
             #atencao: isso sempre cria uma nova categoria
-            categoria_obj = CategoriaSerializer().create(cat_data)
+            categoria_obj = cat_data if campos == 'categoria_id' else CategoriaSerializer().create(cat_data)
             #adiciona a categoria
             produto.categoria.add(categoria_obj)
         #def retorno
