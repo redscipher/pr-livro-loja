@@ -19,10 +19,12 @@ Including another URLconf
 #django
 from django.contrib import admin
 from django.urls import path, re_path, include
+#debug
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     #parametros regulares
     re_path('livroloja/(?P<versao>(v1|v2))/', include('ordem.urls')),
     re_path('livroloja/(?P<versao>(v1|v2))/', include('produto.urls'))
-]
+]  + debug_toolbar_urls()
