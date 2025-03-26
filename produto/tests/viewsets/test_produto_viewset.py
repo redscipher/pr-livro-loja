@@ -3,6 +3,7 @@ import json
 #rest
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
+from rest_framework.authtoken.models import Token
 #django
 from django.urls import reverse
 
@@ -19,9 +20,17 @@ class TesteProdutoViewset(APITestCase):
     #
     def setUp(self):
         self.usuario = UsuarioFabrica()
+        #adicao do token
+        token = Token.objects.create(user=self.usuario)
+        token.save()
+        #-----------------------
         self.produto = ProdutoFabrica(titulo='controle', preco=200)
     
     def test_get_Produto(self):
+        #retorna token criado
+        token = Token.objects.get(user__username=self.usuario.username)
+        #adiciona token na requisicao
+        self.cliente.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
         #resposta
         response = self.cliente.get(
             reverse('produto-list', kwargs={'versao': 'v1'})
@@ -33,9 +42,9 @@ class TesteProdutoViewset(APITestCase):
         print('produto:')
         print(produto_data)
         #testes
-        self.assertEqual(produto_data[0]['titulo'], self.produto.titulo)
-        self.assertEqual(produto_data[0]['preco'], self.produto.preco)
-        self.assertEqual(produto_data[0]['ativo'], self.produto.ativo)
+        self.assertEqual(produto_data['results'][0]['titulo'], self.produto.titulo)
+        self.assertEqual(produto_data['results'][0]['preco'], self.produto.preco)
+        self.assertEqual(produto_data['results'][0]['ativo'], self.produto.ativo)
        
     def test_post_Produto(self):
         #usuario + produto
@@ -46,6 +55,10 @@ class TesteProdutoViewset(APITestCase):
             'preco': 800.0,
             'categoria_id': [categoria.id]
         })
+        #retorna token criado
+        token = Token.objects.get(user__username=self.usuario.username)
+        #adiciona token na requisicao
+        self.cliente.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
         #resposta
         response = self.cliente.post(
             reverse('produto-list', kwargs={'versao': 'v1'}),

@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_extensions",
     "debug_toolbar",
+    "rest_framework.authtoken",
     "ordem",
-    "produto"
+    "produto",
 ]
 
 MIDDLEWARE = [
@@ -52,7 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware"
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "prlivroloja.urls"
@@ -131,9 +132,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #paginacao do rest framework
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5
+    'PAGE_SIZE': 5,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }
 
 INTERNAL_IPS = [
-    "127.0.0.1"
+    "127.0.0.1",
 ]
