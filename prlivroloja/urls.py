@@ -15,19 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-#== importacoes
-#django
+# == importacoes
+# django
 from django.contrib import admin
 from django.urls import path, re_path, include
-#debug
+
+# debug
 from debug_toolbar.toolbar import debug_toolbar_urls
-#rest framework
+
+# rest framework
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    #parametros regulares
-    re_path('livroloja/(?P<versao>(v1|v2))/', include('ordem.urls')),
-    re_path('livroloja/(?P<versao>(v1|v2))/', include('produto.urls')),
-    path('api-token/', obtain_auth_token, name='api_token')
-]  + debug_toolbar_urls()
+    # parametros regulares
+    re_path("livroloja/(?P<versao>(v1|v2))/", include("ordem.urls")),
+    re_path("livroloja/(?P<versao>(v1|v2))/", include("produto.urls")),
+    path("api-token/", obtain_auth_token, name="api_token"),
+] + debug_toolbar_urls()

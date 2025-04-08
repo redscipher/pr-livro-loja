@@ -1,17 +1,17 @@
-#== importacoes
-#django
+# == importacoes
+# django
 from django.urls import path, include
-#rest
+
+# rest
 from rest_framework import routers
-#--------------------
+
+# --------------------
 from ordem.viewset import OrdemViewset
 
-#cria um controlador de rotas
+# cria um controlador de rotas
 rotasControle = routers.SimpleRouter()
-#registra as views
-rotasControle.register(r'ordem', OrdemViewset, basename='ordem')
+# registra as views
+rotasControle.register(r"ordem", OrdemViewset, basename="ordem")
 
-#rotas
-urlpatterns = [
-    path('', include(rotasControle.urls))
-]
+# rotas
+urlpatterns = [path("", include(rotasControle.urls))]

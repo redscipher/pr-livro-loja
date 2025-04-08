@@ -1,45 +1,48 @@
-#== importacoes
+# == importacoes
 import factory
-#modelos
+
+# modelos
 from produto.modelos import Produto, Categoria
 
-#categoria
+
+# categoria
 class CategoriaFabrica(factory.django.DjangoModelFactory):
-    #atributos
-    titulo = factory.Faker('pystr')
-    slug = factory.Faker('pystr')
-    descricao = factory.Faker('pystr')
+    # atributos
+    titulo = factory.Faker("pystr")
+    slug = factory.Faker("pystr")
+    descricao = factory.Faker("pystr")
     ativo = factory.Iterator([True, False])
 
-    #== classes
-    #herdadas: sobreescrita
+    # == classes
+    # herdadas: sobreescrita
     class Meta:
         model = Categoria
 
-#produto
+
+# produto
 class ProdutoFabrica(factory.django.DjangoModelFactory):
-    #atributos
-    preco = factory.Faker('pyint')
-    titulo = factory.Faker('pystr')
-    #instancia
+    # atributos
+    preco = factory.Faker("pyint")
+    titulo = factory.Faker("pystr")
+    # instancia
     categoria = factory.LazyAttribute(CategoriaFabrica)
 
-    #decorador, configura para ser executado depois que criar o objeto
+    # decorador, configura para ser executado depois que criar o objeto
     # o "**kwargs" sao parametros nao especificados convertidos p/ um dicionario, neste caso, o dicionario chamado "kwargs"
     # uso: categoria(true, true, nome='categoria', classe='tipo'), um dicionario com dois itens, chave e valor definidos
     @factory.post_generation
     def categoria(self, criada, extraida, **kwargs):
-        #validacao
+        # validacao
         if not criada:
             return
-        #-----------------
+        # -----------------
         if extraida:
-            #loop
+            # loop
             for categoria in extraida:
                 self.categoria.add(categoria)
-                
-    #== classes
-    #polimorfismo
+
+    # == classes
+    # polimorfismo
     class Meta:
         model = Produto
-        skip_postgeneration_save=True
+        skip_postgeneration_save = True
