@@ -1,18 +1,18 @@
-#== importacoes
-#django
+# == importacoes
+# django
 from django.urls import path, include
-#rest
+
+# rest
 from rest_framework import routers
-#--------------------
+
+# --------------------
 from produto.viewset import ProdutoViewset, CategoriaViewset
 
-#cria um controlador de rotas
+# cria um controlador de rotas
 rotasControle = routers.SimpleRouter()
-#registra as views
-rotasControle.register(r'produto', ProdutoViewset, basename='produto')
-rotasControle.register(r'categoria', CategoriaViewset, basename='categoria')
+# registra as views
+rotasControle.register(r"produto", ProdutoViewset, basename="produto")
+rotasControle.register(r"categoria", CategoriaViewset, basename="categoria")
 
-#rotas
-urlpatterns = [
-    path('', include(rotasControle.urls))
-]
+# rotas
+urlpatterns = [path("", include(rotasControle.urls))]

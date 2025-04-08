@@ -1,20 +1,23 @@
-#importacoes
+# importacoes
 import pytest
-#-----------------------------------
+
+# -----------------------------------
 from produto.fabricas import CategoriaFabrica
 
+
 def criaCategoria():
-    #---------------------
+    # ---------------------
     categoria = CategoriaFabrica()
-    #salva o objeto primeiro, pois a relação many-to-many depende de uma instancia persistida
+    # salva o objeto primeiro, pois a relação many-to-many depende de uma instancia persistida
     categoria.save()
-    #def retorno
+    # def retorno
     return categoria
 
-#decorador p/ criar objetos no banco configurado
+
+# decorador p/ criar objetos no banco configurado
 @pytest.mark.django_db
 def testa_criaCategoria():
-    #cria categoria
+    # cria categoria
     categoria = criaCategoria()
-    #validacoes
+    # validacoes
     assert categoria != None

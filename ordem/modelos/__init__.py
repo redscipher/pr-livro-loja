@@ -1,2 +1,2 @@
-#exporta as classes
+# exporta as classes
 from .ordem import Ordem
