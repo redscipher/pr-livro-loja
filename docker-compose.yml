@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   db:
     image: postgres:14.17
@@ -11,6 +9,8 @@ services:
       - POSTGRES_USER=dev
       - POSTGRES_PASSWORD=dev
       - POSTGRES_DB=livroloja_db
+    networks:
+      - pontaOculta
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -22,5 +22,10 @@ services:
       - ./env.dev
     depends_on:
       - db
+    networks:
+      - pontaOculta
 volumes:
   postgres_data:
+networks:
+  pontaOculta:
+    driver: bridge
