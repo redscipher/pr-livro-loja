@@ -23,8 +23,7 @@ packaging==24.2
 pathspec==0.12.1
 platformdirs==4.3.7
 pluggy==1.5.0
--e git+https://github.com/redscipher/pr-livro-loja.git@e8c2c09aa9e3b5a5b836109d04c8bad117b64641#egg=prlivroloja
-psycopg2==2.9.10
+-e git+https://github.com/redscipher/pr-livro-loja.git@34b0bede8332974d5630088a34b57cdd74a4ae8b#egg=prlivroloja
 psycopg2-binary==2.9.10
 pycodestyle==2.13.0
 pyflakes==3.3.2
