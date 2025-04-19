@@ -26,9 +26,6 @@ SECRET_KEY = "django-insecure-rxl5cl*020e%jr)h60_b3!a3y&r(s*w03eg__x9v9_p0@6el6r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "prlivroloja.wsgi.application"
+WSGI_APPLICATION = "prlivroloja.wsgi.app"
 
 STATIC_URL = BASE_DIR / 'staticfiles'
 
@@ -159,5 +156,5 @@ SECRET_KEY = os.environ.get("CHAVE_SECRETA", "")
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 #ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'pr-livro-loja.vercel.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app']
 
