@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-rxl5cl*020e%jr)h60_b3!a3y&r(s*w03eg__x9v9_p0@6el6r"
+SECRET_KEY = os.environ.get("CHAVE_SECRETA")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -151,9 +151,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-SECRET_KEY = os.environ.get("CHAVE_SECRETA", "")
-
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
-#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
