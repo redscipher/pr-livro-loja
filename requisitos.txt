@@ -10,22 +10,28 @@ django-extensions==3.2.3
 djangorestframework==3.16.0
 factory_boy==3.3.3
 Faker==37.1.0
+flake8==7.2.0
+gunicorn==23.0.0
 h11==0.14.0
 httpcore==1.0.7
 httpx==0.28.1
 idna==3.10
 iniconfig==2.1.0
+mccabe==0.7.0
 mypy-extensions==1.0.0
 packaging==24.2
 pathspec==0.12.1
 platformdirs==4.3.7
 pluggy==1.5.0
--e git+https://github.com/redscipher/pr-livro-loja.git@e16205e2b2b49f48b58e010c1fcbe73ffcdcdd0e#egg=prlivroloja
+-e git+https://github.com/redscipher/pr-livro-loja.git@432ff66d1dbff6898669f9a88d3831d5c866d7f2#egg=prlivroloja
 psycopg2==2.9.10
 psycopg2-binary==2.9.10
+pycodestyle==2.13.0
+pyflakes==3.3.2
 pytest==8.3.5
 pytest-django==4.11.1
 sniffio==1.3.1
 sqlparse==0.5.3
 tzdata==2025.2
 uvicorn==0.34.0
+whitenoise==6.9.0
