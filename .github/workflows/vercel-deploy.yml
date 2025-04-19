@@ -1,0 +1,12 @@
+name: Subir Container na Vercel
+
+on:
+    push:
+        branches:
+            - 'main'
+jobs:
+    vercel-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Troca p/ o repositorio
+              uses: actions/checkout@v2

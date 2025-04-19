@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",        #configuracao whitenoise
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -46,7 +47,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware"        #configuracao whitenoise
 ]
 
 ROOT_URLCONF = "prlivroloja.urls"
@@ -67,12 +67,14 @@ TEMPLATES = [
     },
 ]
 
+#aplicacao a ser usada no wsgi
 WSGI_APPLICATION = "prlivroloja.wsgi.app"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 #arquivos estaticos
 STATIC_URL = "static/"
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #whitenoise estaticos
@@ -145,11 +147,11 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in production secret
 SECRET_KEY = os.environ.get("CHAVE_SECRETA")
 
-#hosts autorizads a acessar o app
+#hosts autorizads a acessar a aplicacao
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
