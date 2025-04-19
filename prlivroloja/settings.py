@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "prlivroloja.wsgi.app"
+WSGI_APPLICATION = "prlivroloja.wsgi.application"
 
 STATIC_URL = BASE_DIR / 'staticfiles'
 
