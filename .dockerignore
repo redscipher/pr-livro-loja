@@ -1,1 +1,6 @@
 .venv
+
+#dirs
+__pycache__
+*.pyc
+db.sqlite3
