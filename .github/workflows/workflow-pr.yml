@@ -1,4 +1,4 @@
-name: Python Requisicao p/ Baixar Fluxos
+name: Python Requisicao p/ Baixar Fluxo
 on: [pull_request]
 jobs:
 
