@@ -1,0 +1,38 @@
+name: Python Requisicao p/ Baixar Fluxo
+on: [pull_request]
+jobs:
+
+    qa:
+        name: Checkagem de qualidade
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: Configura python
+              uses: action/setup-python@master
+              with:
+                python-version: 3.13
+            - name: Instala poetry
+              run: |
+                pip install -U pip
+                pip install poetry
+                poetry install
+              env:
+                POETRY_VIRTUALENVS_CREATE: false
+
+            - name: Ver poetry --help
+              run: poetry --help
+
+            - name: Instala dependencias
+              shell: bash
+              run: python -m poetry install
+
+            - name: Teste
+              run: |
+                poetry run python manage.py test
+            - name: Wemake python Styleguide
+              uses: wemake-services/wemake-python-styleguide@0.16.0
+              continue-on-error: true
+              with:
+                reporter: 'github-pr-review'
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
