@@ -6,7 +6,6 @@ from rest_framework.authentication import (
     TokenAuthentication,
 )
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 
 # ---------------------------------
 from ordem.modelos import Ordem
@@ -15,8 +14,6 @@ from ordem.serializadores import OrdemSerializer
 
 class OrdemViewset(ModelViewSet):
     #
-    renderer_classes = [BrowsableAPIRenderer, JSONRenderer]
-    #-------------------
     authentication_classes = [
         SessionAuthentication,
         BasicAuthentication,
