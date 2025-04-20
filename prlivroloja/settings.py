@@ -151,7 +151,7 @@ INTERNAL_IPS = [
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 # SECURITY WARNING: keep the secret key used in production secret
-SECRET_KEY = os.environ.get("CHAVE_SECRETA")
+SECRET_KEY = os.environ.get("CHAVE_SECRETA", "")
 
 #hosts autorizads a acessar a aplicacao
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
