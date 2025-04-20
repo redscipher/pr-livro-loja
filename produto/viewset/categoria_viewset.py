@@ -1,6 +1,6 @@
 # importacoes
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer, TemplateHTMLRenderer
+from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 
 # ---------------------------------
 from produto.modelos import Categoria
@@ -9,7 +9,7 @@ from produto.serializadores import CategoriaSerializer
 
 class CategoriaViewset(ModelViewSet):
     #
-    renderer_classes = [TemplateHTMLRenderer, BrowsableAPIRenderer, JSONRenderer]
+    renderer_classes = [BrowsableAPIRenderer, JSONRenderer]
     # retorna uma instancia da classe serializadora
     serializer_class = CategoriaSerializer
     # conjunto
