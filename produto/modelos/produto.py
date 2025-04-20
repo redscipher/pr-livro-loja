@@ -15,3 +15,6 @@ class Produto(models.Model):
     ativo = models.BooleanField(default=True)
     # tabelas
     categoria = models.ManyToManyField(Categoria, blank=True)
+    
+    def __str__(self):
+        return self.titulo

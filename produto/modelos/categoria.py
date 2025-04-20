@@ -9,3 +9,6 @@ class Categoria(models.Model):
     descricao = models.TextField(max_length=200, blank=True, null=True)
     # controle
     ativo = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.titulo
