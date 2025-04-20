@@ -4,6 +4,7 @@ black==25.1.0
 certifi==2025.1.31
 click==8.1.8
 colorama==0.4.6
+dj-database-url==2.3.0
 Django==5.2
 django-debug-toolbar==5.1.0
 django-extensions==3.2.3
@@ -23,13 +24,15 @@ packaging==24.2
 pathspec==0.12.1
 platformdirs==4.3.7
 pluggy==1.5.0
-psycopg2-binary>=2.9,<2.9.11
+-e git+https://github.com/redscipher/pr-livro-loja.git@868b4e4df14c1f5835890460dbe53d63a02c676c#egg=prlivroloja
+psycopg2-binary==2.9.10
 pycodestyle==2.13.0
 pyflakes==3.3.2
 pytest==8.3.5
 pytest-django==4.11.1
 sniffio==1.3.1
 sqlparse==0.5.3
+typing_extensions==4.13.2
 tzdata==2025.2
 uvicorn==0.34.0
 whitenoise==6.9.0
