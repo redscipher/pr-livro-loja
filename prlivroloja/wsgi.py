@@ -14,4 +14,4 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "prlivroloja.settings")
 
 #nome do objeto p/ controle do wsgi
-application = get_wsgi_application()
+app = get_wsgi_application()
