@@ -70,7 +70,7 @@ TEMPLATES = [
 ]
 
 #aplicacao a ser usada no wsgi
-WSGI_APPLICATION = "prlivroloja.wsgi.app"
+WSGI_APPLICATION = "prlivroloja.wsgi.application"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
