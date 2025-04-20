@@ -33,6 +33,6 @@ urlpatterns = [
     re_path("livroloja/(?P<versao>(v1|v2))/", include("ordem.urls")),
     re_path("livroloja/(?P<versao>(v1|v2))/", include("produto.urls")),
     path("api-token/", obtain_auth_token, name="api_token"),
-    path("update_server/", views.update, name="update"),
-    path("hello/", views.hello_world, name="hello_world")
+    path("update_server/", views.update, name="update"),        #webhook automacao
+    path("hello/", views.hello_world, name="hello_world")       #exibicao inicial
 ] + debug_toolbar_urls()
