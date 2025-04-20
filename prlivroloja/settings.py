@@ -87,10 +87,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("SQL_MOTOR", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_BANCO", BASE_DIR / "db.sqlite3"),
-        "USER": os.environ.get("SQL_USR", "user"),
-        "PASSWORD": os.environ.get("SQL_SENHA", "senha"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "NAME": os.environ.get("POSTGRES_DATABASE", BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("POSTGRES_USER", "user"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "senha"),
+        "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORTA", "5432"),
     }
 }
