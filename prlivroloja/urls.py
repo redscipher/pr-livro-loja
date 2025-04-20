@@ -17,6 +17,7 @@ Including another URLconf
 
 # == importacoes
 # django
+from prlivroloja import views
 from django.contrib import admin
 from django.urls import path, re_path, include
 
@@ -32,4 +33,5 @@ urlpatterns = [
     re_path("livroloja/(?P<versao>(v1|v2))/", include("ordem.urls")),
     re_path("livroloja/(?P<versao>(v1|v2))/", include("produto.urls")),
     path("api-token/", obtain_auth_token, name="api_token"),
+    path("update_server/", views.update, name="update"),
 ] + debug_toolbar_urls()
