@@ -163,4 +163,5 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 SECRET_KEY = os.environ.get("CHAVE_SECRETA", "django-insecure-rxl5cl*020e%jr)h60_b3!a3y&r(s*w03eg__x9v9_p0@6el6r")
 
 #hosts autorizads a acessar a aplicacao
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
+#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = ['redscipher.pythonanywhere.com', 'localhost', '127.0.0.1']
