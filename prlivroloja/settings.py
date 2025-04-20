@@ -48,7 +48,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware"        #configuracao whitenoise
+    "whitenoise.middleware.WhiteNoiseMiddleware"        #configuracao whitenoise por ultimo
 ]
 
 ROOT_URLCONF = "prlivroloja.urls"
@@ -56,7 +56,7 @@ ROOT_URLCONF = "prlivroloja.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'prlivroloja', 'templates')],
+        "DIRS": [os.path.join(BASE_DIR, 'prlivroloja', 'templates')],       #adicao dos templates
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -74,11 +74,11 @@ WSGI_APPLICATION = "prlivroloja.wsgi.application"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-#arquivos estaticos
+#arquivos estaticos p/ servir as imagens e css do django
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-#whitenoise estaticos
+#whitenoise estaticos: django
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
@@ -149,8 +149,8 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ],
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer', 
+    'DEFAULT_RENDERER_CLASSES': (       #inclusao dos renders do django
+        'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
@@ -162,8 +162,8 @@ INTERNAL_IPS = [
 # SECURITY WARNING: don't run with debug turned on in production
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
-# SECURITY WARNING: keep the secret key used in production secret
+# SECURITY WARNING: keep the secret key used in production secret: chave secreta
 SECRET_KEY = os.environ.get("CHAVE_SECRETA", "django-insecure-rxl5cl*020e%jr)h60_b3!a3y&r(s*w03eg__x9v9_p0@6el6r")
 
-#hosts autorizads a acessar a aplicacao
+#hosts autorizados a acessar a aplicacao
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost 127.0.0.1 redscipher.pythonanywhere.com").split(" ")
