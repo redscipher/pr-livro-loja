@@ -97,8 +97,8 @@ DATABASES = {
     "default": {
         "ENGINE": os.environ.get("SQL_MOTOR", "django.db.backends.sqlite3"),
         "NAME": os.environ.get("SQL_BANCO", BASE_DIR / "db.sqlite3"),
-        "USER": os.environ.get("SQL_USR", "user"),
-        "PASSWORD": os.environ.get("SQL_SENHA", "senha"),
+        "USER": os.environ.get("SQL_USR", "dev"),
+        "PASSWORD": os.environ.get("SQL_SENHA", "dev"),
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORTA", "5432"),
     }
@@ -166,5 +166,4 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 SECRET_KEY = os.environ.get("CHAVE_SECRETA", "django-insecure-rxl5cl*020e%jr)h60_b3!a3y&r(s*w03eg__x9v9_p0@6el6r")
 
 #hosts autorizads a acessar a aplicacao
-#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
-ALLOWED_HOSTS = ['redscipher.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost 127.0.0.1 redscipher.pythonanywhere.com").split(" ")
