@@ -70,7 +70,7 @@ TEMPLATES = [
 ]
 
 #aplicacao a ser usada no wsgi
-WSGI_APPLICATION = "prlivroloja.wsgi.application"
+WSGI_APPLICATION = "prlivroloja.wsgi.app"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -86,14 +86,24 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        default=os.environ.get('DATABASE_URL'),
+#        conn_max_age=600,
+#        ssl_require=True
+#    )
+#}
 
+DATABASES = {
+    "default": {
+        "ENGINE": os.environ.get("SQL_MOTOR", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_BANCO", BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("SQL_USR", "user"),
+        "PASSWORD": os.environ.get("SQL_SENHA", "senha"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORTA", "5432"),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
